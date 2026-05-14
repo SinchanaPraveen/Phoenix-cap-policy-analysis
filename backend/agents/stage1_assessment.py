@@ -210,17 +210,7 @@ def run_stage1(
         )
 
     except Exception as exc:  # noqa: BLE001
-        ts = datetime.now(tz=timezone.utc).isoformat()
-        error_msg = f"Agent failed: {exc}"
-        print(f"[Stage 1 – Assessment] ERROR at {ts}: {exc}")
-        return AssessmentReport(
-            idea=idea,
-            alignment_finding="Error",
-            conflict_finding="Error",
-            equity_finding="Error",
-            feasibility_finding="Error",
-            implementation_pathway="Error",
-            overall_verdict="Error",
-            raw_output=error_msg,
-            citations=[],
-        )
+        print(f"Claude API error in Stage 1: {str(exc)}")
+        print(f"Model used: {settings.claude_model}")
+        print(f"API key prefix: {settings.anthropic_api_key[:10] if settings.anthropic_api_key else 'NOT SET'}")
+        raise
