@@ -1,0 +1,35 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+*.egg
+test_api.py
+
+# Node / Frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Data – keep .txt but ignore raw PDFs
+data/*.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+.vercel
+.env*.local
