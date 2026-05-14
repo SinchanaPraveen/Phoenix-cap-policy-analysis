@@ -100,7 +100,7 @@ app.add_middleware(
         "http://localhost:5173",
         "http://localhost:3000",
         "https://phoenix-cap-policy-analysis-1.onrender.com",
-        "https://phoenix-cap-frontend.onrender.com",
+        "https://phoenix-cap-policy-analysis.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
