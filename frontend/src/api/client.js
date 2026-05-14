@@ -4,7 +4,7 @@
  * All requests go to http://localhost:8000/api (Vite proxy forwards /api in dev).
  */
 
-const API_BASE = '/api';
+const API_BASE = "https://phoenix-cap-policy-analysis.onrender.com/api";
 
 // ─── Pipeline ────────────────────────────────────────────────────────────────
 
