@@ -85,7 +85,7 @@ class Settings:
     # Max tokens per stage
     # ------------------------------------------------------------------
     max_tokens_stage1: int = 3500
-    max_tokens_stage2: int = 2500
+    max_tokens_stage2: int = 6000
     max_tokens_stage3: int = 1800
     max_tokens_stage4: int = 1800
     max_tokens_stage5: int = 600
