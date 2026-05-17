@@ -161,7 +161,14 @@ def _extract_section(text: str, section_label: str, next_label: str = "") -> str
     end_pattern = rf"(?={re.escape(next_label)})" if next_label else r"\Z"
     pattern = rf"\b{re.escape(section_label)}\b[:\s]*(.*?){end_pattern}"
     match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
-    return " ".join(match.group(1).split()) if match else ""
+    if not match:
+        return ""
+    result = " ".join(match.group(1).split())
+    # Strip trailing markdown boundary artifacts (e.g. "--- ##") that appear
+    # when the lookahead stops mid-header (e.g. before "BACKGROUND" but after
+    # the preceding "## " or "---" separator the LLM emits between sections.
+    result = re.sub(r'[\s\-#]+$', '', result).strip()
+    return result
 
 
 def _extract_bullet_list(text: str, section_label: str, next_label: str = "") -> list[str]:

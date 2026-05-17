@@ -1,5 +1,46 @@
 import React, { useState } from 'react';
 
+// ─── Minimal markdown renderer (mirrors AgentOutput) ─────────────────────────
+function inlineMd(text) {
+  return text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,    '<em>$1</em>')
+    .replace(/`(.+?)`/g,      '<code>$1</code>');
+}
+
+function renderMarkdown(text) {
+  if (!text) return null;
+  const elements = [];
+  let listBuffer = [], listType = null, keyIdx = 0;
+  const flushList = () => {
+    if (!listBuffer.length) return;
+    const Tag = listType;
+    elements.push(
+      <Tag key={`l-${keyIdx++}`} className="md-list">
+        {listBuffer.map((item, i) => (
+          <li key={i} dangerouslySetInnerHTML={{ __html: inlineMd(item) }} />
+        ))}
+      </Tag>
+    );
+    listBuffer = []; listType = null;
+  };
+  text.split('\n').forEach((line) => {
+    if (/^###\s+/.test(line)) { flushList(); elements.push(<h3 key={keyIdx++} className="md-h3">{line.replace(/^###\s+/, '')}</h3>); return; }
+    if (/^##\s+/.test(line))  { flushList(); elements.push(<h2 key={keyIdx++} className="md-h2">{line.replace(/^##\s+/,  '')}</h2>); return; }
+    if (/^#\s+/.test(line))   { flushList(); elements.push(<h1 key={keyIdx++} className="md-h1">{line.replace(/^#\s+/,   '')}</h1>); return; }
+    const ul = line.match(/^[-*]\s+(.*)/);
+    if (ul) { if (listType === 'ol') flushList(); listType = 'ul'; listBuffer.push(ul[1]); return; }
+    const ol = line.match(/^\d+\.\s+(.*)/);
+    if (ol) { if (listType === 'ul') flushList(); listType = 'ol'; listBuffer.push(ol[1]); return; }
+    if (!line.trim()) { flushList(); elements.push(<br key={keyIdx++} />); return; }
+    flushList();
+    elements.push(<p key={keyIdx++} className="md-p" dangerouslySetInnerHTML={{ __html: inlineMd(line) }} />);
+  });
+  flushList();
+  return elements;
+}
+
 // ─── Evaluator meta ───────────────────────────────────────────────────────────
 const EVALUATOR_META = {
   stage3a: { avatar: 'NE', label: 'Neutral Evaluator', color: 'blue'   },
@@ -41,12 +82,15 @@ function EvaluatorCard({ stageKey, data, compact = false }) {
         <div className="ev-card-body">
           {status === 'done' ? (
             <div className="ev-findings">
-              {Object.entries(data.findings ?? {}).map(([k, v]) => (
-                <div key={k} className="ev-finding-row">
-                  <p className="ev-finding-label">{k.replace(/_/g, ' ')}</p>
-                  <p className="ev-finding-value">{v}</p>
-                </div>
-              ))}
+              {Object.entries(data.findings ?? {}).length > 0
+                ? Object.entries(data.findings).map(([k, v]) => (
+                    <div key={k} className="ev-finding-row">
+                      <p className="ev-finding-label">{k.replace(/_/g, ' ')}</p>
+                      <p className="ev-finding-value">{v}</p>
+                    </div>
+                  ))
+                : <div className="ao-markdown">{renderMarkdown(data.raw_output)}</div>
+              }
             </div>
           ) : (
             <Skeleton />
