@@ -61,20 +61,33 @@ def _extract_section_items(text: str, section_label: str) -> list[str]:
     list[str]
         Stripped list of action item strings found under that section.
     """
-    # Step 1: Find the section header line — flexible prefix matching
-    header_re = re.compile(
-        rf"^[^\n]*\b{re.escape(section_label)}\b[^\n]*$",
-        re.IGNORECASE | re.MULTILINE,
-    )
-    m = header_re.search(text)
+    # Step 1: Find the section header line — flexible prefix matching.
+    # Try the full label first, then progressively shorter prefixes so that
+    # "MEDIUM-TERM" matches even when Claude omits the trailing "ACTIONS".
+    label_variants: list[str] = [section_label]
+    parts = section_label.split()
+    if len(parts) > 1:
+        label_variants.append(" ".join(parts[:2]))  # first two words
+        label_variants.append(parts[0])              # first word only
+
+    m = None
+    for label in label_variants:
+        header_re = re.compile(
+            rf"^[^\n]*\b{re.escape(label)}\b[^\n]*$",
+            re.IGNORECASE | re.MULTILINE,
+        )
+        m = header_re.search(text)
+        if m:
+            break
     if not m:
         return []
 
     # Step 2: Grab content after the header, stop at the next known section.
-    # Require ## heading prefix to avoid matching inline labels like **Equity Safeguard:**.
+    # Accept both ## headings and plain numbered headers (e.g. "2. MEDIUM-TERM")
+    # to avoid missing section boundaries when Claude omits markdown.
     after = text[m.end():]
     stopper = re.compile(
-        r"^#{1,2}\s+(?:[^\n]*\b)?"
+        r"^(?:#{1,2}\s+|[1-9]\.\s+)(?:[^\n]*\b)?"
         r"(?:QUICK\s+WINS|MEDIUM[- ]TERM|LONG[- ]TERM|EQUITY\s+CHECKLIST|PHASE\s+[23])\b",
         re.IGNORECASE | re.MULTILINE,
     )
