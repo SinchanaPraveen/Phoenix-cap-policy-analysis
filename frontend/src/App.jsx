@@ -112,7 +112,7 @@ export default function App() {
       <header className="app-header">
         <h1>Phoenix CAP Policy Analysis System</h1>
         <span className="subtitle">
-          Multi-agent GenAI evaluation · 2021 Climate Action Plan · ASU
+          <a href="https://spa.asu.edu/" target="_blank" rel="noopener noreferrer">School of Public Affairs</a> · ASU
         </span>
       </header>
 

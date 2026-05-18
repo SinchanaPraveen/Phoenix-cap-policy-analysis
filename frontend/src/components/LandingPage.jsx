@@ -12,7 +12,7 @@ export default function LandingPage({ onLaunch }) {
       {/* ── Hero ─────────────────────────────────────────── */}
       <div className="lp-hero">
         <p className="lp-eyebrow">Arizona State University</p>
-        <h1 className="lp-title">Phoenix CAP<br />Policy Analysis System</h1>
+        <h1 className="lp-title">Policy Analysis System with GenAI</h1>
         <p className="lp-tagline">
           Multi-agent AI evaluation of climate policy ideas,
           grounded in Phoenix's 2021 Climate Action Plan.
@@ -23,6 +23,9 @@ export default function LandingPage({ onLaunch }) {
       </div>
 
       {/* ── Three feature columns ────────────────────────── */}
+      <div className="lp-steps-header">
+        <p className="lp-steps-label">Steps to follow</p>
+      </div>
       <div className="lp-features">
         <div className="lp-feature">
           <p className="lp-feature-number">01</p>
@@ -78,57 +81,18 @@ export default function LandingPage({ onLaunch }) {
             </p>
           </div>
 
-          {/* Right: What makes this different */}
+          {/* Right: Funding & Team */}
           <div className="lp-about-col lp-about-col--right">
-            <p className="lp-about-col-label">What makes this different</p>
-            <ul className="lp-about-bullets">
-              <li className="lp-about-bullet">
-                <span className="lp-bullet-dot" />
-                <span>
-                  <strong>Dual-functioning system</strong> — not just generation,
-                  but structured evaluation grounded in policy analysis criteria.
-                </span>
-              </li>
-              <li className="lp-about-bullet">
-                <span className="lp-bullet-dot" />
-                <span>
-                  <strong>Evaluative rigor</strong> — agents critique outputs across
-                  equity, feasibility, regulatory alignment, and community voice.
-                </span>
-              </li>
-              <li className="lp-about-bullet">
-                <span className="lp-bullet-dot" />
-                <span>
-                  <strong>Human-in-the-loop</strong> — user-defined weights from
-                  Kraft &amp; Furlong Ch. 6 shape every agent's reasoning.
-                </span>
-              </li>
-              <li className="lp-about-bullet">
-                <span className="lp-bullet-dot" />
-                <span>
-                  <strong>CTDS · School of Public Affairs</strong> — developed at
-                  the Center on Technology, Data, and Society.
-                </span>
-              </li>
-            </ul>
+            <p className="lp-about-col-label">Funding &amp; Team</p>
+            <p className="lp-about-body">
+              This project is funded by ASU Learning Engineering Institute, 2025–2026.
+              The project team includes Dr. Yushim Kim (PI), Dr. Jieun Kim (Co-PI),
+              Sinchana Parveen, Madumita Karthikeyan, and Saria Abedin.
+            </p>
           </div>
         </div>
       </div>
 
-      {/* ── Quote ────────────────────────────────────────── */}
-      <div className="lp-attribution">
-        <blockquote className="lp-quote">
-          <p className="lp-quote-text">
-            "Students will co-design this dual-functioning GenAI system, learning
-            to critically assess GenAI outputs rather than accept them at face
-            value. The pedagogical approach transforms students from passive GenAI
-            consumers into architects of evaluative systems."
-          </p>
-          <cite className="lp-quote-attr">
-            SURE Research Program · School of Public Affairs · ASU
-          </cite>
-        </blockquote>
-      </div>
     </div>
   );
 }

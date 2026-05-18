@@ -30,7 +30,7 @@ export default function IdeaInput({ onSubmit }) {
       <div className="ii-left">
         {/* Branding */}
         <div className="ii-brand">
-          <h1 className="ii-title">Phoenix CAP Policy Analysis System</h1>
+          <h1 className="ii-title">Phoenix CAP Policy Analysis System with GenAI </h1>
           <p className="ii-subtitle">
             Multi-agent GenAI policy evaluation&nbsp;·&nbsp;Arizona State University
           </p>
@@ -39,7 +39,7 @@ export default function IdeaInput({ onSubmit }) {
         {/* Quote attribution */}
         <blockquote className="ii-quote">
           <p className="ii-quote-text">"AI-assisted policy evaluation grounded in Phoenix's 2021 Climate Action Plan."</p>
-          <cite className="ii-quote-attr">School of Public Affairs · ASU</cite>
+          <cite className="ii-quote-attr">School of Public Affairs · Arizona State University</cite>
         </blockquote>
 
         {/* Textarea */}
