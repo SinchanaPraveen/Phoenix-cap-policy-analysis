@@ -88,7 +88,7 @@ class Settings:
     max_tokens_stage2: int = 6000
     max_tokens_stage3: int = 1800
     max_tokens_stage4: int = 1800
-    max_tokens_stage5: int = 2000
+    max_tokens_stage5: int = 2500
 
     # ------------------------------------------------------------------
     # Server
