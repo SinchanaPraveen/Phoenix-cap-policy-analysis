@@ -118,7 +118,7 @@ export default function App() {
 
       {/* ── Views ──────────────────────────────────── */}
       {view === 'landing' && <LandingPage onLaunch={() => setView('input')} />}
-      {view === 'input'   && <IdeaInput onSubmit={handleIdeaSubmit} />}
+      {view === 'input'   && <IdeaInput onSubmit={handleIdeaSubmit} onBack={() => setView('landing')} />}
       {view === 'weights' && (
         <WeightSliders
           idea={idea}

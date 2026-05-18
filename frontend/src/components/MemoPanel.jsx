@@ -94,34 +94,6 @@ export default function MemoPanel({ memo, isLoading = false, weights = null }) {
 
       {memo && (
         <>
-          {/* ── TO / CC / FROM / DATE / RE fields ── */}
-          <table className="mp-fields">
-            <tbody>
-              <tr>
-                <td className="mp-field-key">TO</td>
-                <td className="mp-field-val">{memo.to_recipient}</td>
-              </tr>
-              <tr>
-                <td className="mp-field-key">CC</td>
-                <td className="mp-field-val">{memo.cc_recipient}</td>
-              </tr>
-              <tr>
-                <td className="mp-field-key">FROM</td>
-                <td className="mp-field-val">Phoenix CAP Policy Analysis System</td>
-              </tr>
-              <tr>
-                <td className="mp-field-key">DATE</td>
-                <td className="mp-field-val">{memo.date}</td>
-              </tr>
-              <tr>
-                <td className="mp-field-key">RE</td>
-                <td className="mp-field-val mp-field-val--re">{memo.re_subject}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <hr className="mp-divider" />
-
           {/* ── Body sections ── */}
           <div className="mp-body">
             <MemoSection title="ISSUE">

@@ -14,7 +14,7 @@ const EXAMPLES = [
  * Props:
  *   onSubmit(idea, mode)  called when user clicks "Continue →"
  */
-export default function IdeaInput({ onSubmit }) {
+export default function IdeaInput({ onSubmit, onBack }) {
   const [idea, setIdea] = useState('');
   const [mode, setMode] = useState('mvp');
 
@@ -28,9 +28,16 @@ export default function IdeaInput({ onSubmit }) {
     <div className="ii-shell">
       {/* ── LEFT COLUMN ─────────────────────────────── */}
       <div className="ii-left">
+        {/* Back link */}
+        {onBack && (
+          <button className="ii-back-btn" onClick={onBack}>
+            ← Back
+          </button>
+        )}
+
         {/* Branding */}
         <div className="ii-brand">
-          <h1 className="ii-title">Phoenix CAP Policy Analysis System with GenAI </h1>
+          <h1 className="ii-title">Policy Analysis System with GenAI</h1>
           <p className="ii-subtitle">
             Multi-agent GenAI policy evaluation&nbsp;·&nbsp;Arizona State University
           </p>
@@ -74,7 +81,7 @@ export default function IdeaInput({ onSubmit }) {
       <div className="ii-right">
         {/* Pipeline mode card */}
         <div className="ii-mode-card">
-          <p className="ii-mode-card-heading">Pipeline mode</p>
+          <p className="ii-mode-card-heading">Choose your mode</p>
 
           {/* MVP option */}
           <label className={`ii-mode-option${mode === 'mvp' ? ' ii-mode-option--active' : ''}`}>
@@ -88,10 +95,10 @@ export default function IdeaInput({ onSubmit }) {
             />
             <div className="ii-mode-option-body">
               <div className="ii-mode-option-top">
-                <span className="ii-mode-name">MVP</span>
+                <span className="ii-mode-name">Fast mode</span>
                 <span className="ii-mode-badge ii-mode-badge--fast">Fastest</span>
               </div>
-              <p className="ii-mode-desc">Generator only&nbsp;·&nbsp;Stage 1 → 2 → 4</p>
+              <p className="ii-mode-desc">Idea Generator only</p>
               <p className="ii-mode-note">No evaluators</p>
             </div>
           </label>
@@ -108,10 +115,10 @@ export default function IdeaInput({ onSubmit }) {
             />
             <div className="ii-mode-option-body">
               <div className="ii-mode-option-top">
-                <span className="ii-mode-name">Full</span>
+                <span className="ii-mode-name">Full Mode</span>
                 <span className="ii-mode-badge ii-mode-badge--thorough">Most thorough</span>
               </div>
-              <p className="ii-mode-desc">All agents&nbsp;·&nbsp;+ Stage 3a/b/c + Synthesis</p>
+              <p className="ii-mode-desc">Idea generator &amp; Evaluator</p>
               <p className="ii-mode-note">Includes all evaluator perspectives</p>
             </div>
           </label>
