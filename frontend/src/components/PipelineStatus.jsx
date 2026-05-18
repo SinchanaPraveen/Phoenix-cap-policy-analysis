@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 
 // ─── Stage definitions ────────────────────────────────────────────────────────
 const MVP_STAGES = [
-  { key: 'stage1', short: 'Assessment', label: 'Stage 1 — Assessment' },
-  { key: 'stage2', short: 'Planning',   label: 'Stage 2 — Planning'   },
-  { key: 'stage4', short: 'Memo',       label: 'Stage 4 — Memo'       },
+  { key: 'stage1', short: 'Idea Assessment',        label: 'Idea Assessment'        },
+  { key: 'stage2', short: 'Implementation Roadmap', label: 'Implementation Roadmap' },
+  { key: 'stage4', short: 'Summary',                 label: 'Summary'                },
 ];
 
 const FULL_STAGES = [
-  { key: 'stage1',  short: 'Assessment', label: 'Stage 1 — Assessment'    },
-  { key: 'stage2',  short: 'Planning',   label: 'Stage 2 — Planning'      },
-  { key: 'stage3a', short: '3a',         label: 'Stage 3a — Neutral Eval' },
-  { key: 'stage3b', short: '3b',         label: 'Stage 3b — Citizen'      },
-  { key: 'stage3c', short: '3c',         label: 'Stage 3c — ADEQ'         },
-  { key: 'stage5',  short: 'Synthesis',  label: 'Stage 5 — Synthesis'     },
-  { key: 'stage4',  short: 'Memo',       label: 'Stage 4 — Memo'          },
+  { key: 'stage1',  short: 'Idea Assessment',        label: 'Idea Assessment'        },
+  { key: 'stage2',  short: 'Implementation Roadmap', label: 'Implementation Roadmap' },
+  { key: 'stage3a', short: 'Neutral Evaluator',      label: 'Neutral Evaluator'      },
+  { key: 'stage3b', short: 'Citizen Evaluator',      label: 'Citizen Evaluator'      },
+  { key: 'stage3c', short: 'ADEQ Analyst',           label: 'ADEQ Analyst'           },
+  { key: 'stage5',  short: 'Synthesis',              label: 'Synthesis'              },
+  { key: 'stage4',  short: 'Summary',                label: 'Summary'                },
 ];
 
 /**

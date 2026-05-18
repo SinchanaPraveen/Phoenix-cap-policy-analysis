@@ -40,10 +40,10 @@ const CRITERIA = [
 
 const PRESETS = [
   {
-    label: 'Equity-first',
+    label: 'Balanced',
     values: {
-      equity: 10, effectiveness: 8, efficiency: 3, liberty: 2,
-      political_feasibility: 5, social_acceptability: 7, administrative_feasibility: 6,
+      effectiveness: 5, efficiency: 5, equity: 5, liberty: 5,
+      political_feasibility: 5, social_acceptability: 5, administrative_feasibility: 5,
     },
   },
   {
@@ -61,10 +61,10 @@ const PRESETS = [
     },
   },
   {
-    label: 'Balanced',
+    label: 'Equity-first',
     values: {
-      effectiveness: 5, efficiency: 5, equity: 5, liberty: 5,
-      political_feasibility: 5, social_acceptability: 5, administrative_feasibility: 5,
+      equity: 10, effectiveness: 8, efficiency: 3, liberty: 2,
+      political_feasibility: 5, social_acceptability: 7, administrative_feasibility: 6,
     },
   },
 ];
@@ -108,7 +108,7 @@ export default function WeightSliders({ onSubmit, onBack, idea }) {
         <div className="ws-header">
           <h2 className="ws-title">Evaluation Weights</h2>
           <p className="ws-subtitle">
-            Adjust how much each criterion matters. Based on Ch. 6 policy analysis framework.
+            Adjust to the level of importance of each criterion for the city of Phoenix taking climate action.
           </p>
         </div>
 

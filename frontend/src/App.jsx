@@ -36,8 +36,8 @@ const CRITERIA = [
 // Tabs available in results view
 const ALL_TABS = [
   { key: 'memo',       label: 'Summary'      },
-  { key: 'stage1',     label: 'Stage 1'      },
-  { key: 'stage2',     label: 'Stage 2'      },
+  { key: 'stage1',     label: 'Idea Assessment'        },
+  { key: 'stage2',     label: 'Implementation Roadmap' },
   { key: 'evaluators', label: 'Evaluators',  fullOnly: true },
   { key: 'synthesis',  label: 'Synthesis',   fullOnly: true },
   { key: 'evidence',   label: 'Evidence'     },
@@ -149,17 +149,17 @@ export default function App() {
 
 // ─── Loading Card ─────────────────────────────────────────────────────────────
 const MVP_STAGES = [
-  { key: 'stage1', label: 'Stage 1: Assessment'  },
-  { key: 'stage2', label: 'Stage 2: Planning'    },
+  { key: 'stage1', label: 'Idea Assessment'        },
+  { key: 'stage2', label: 'Implementation Roadmap' },
   { key: 'stage4', label: 'Stage 4: Summary'     },
 ];
 
 const FULL_STAGES = [
-  { key: 'stage1',  label: 'Stage 1: Assessment'      },
-  { key: 'stage2',  label: 'Stage 2: Planning'         },
-  { key: 'stage3a', label: 'Stage 3a: Neutral Eval'    },
-  { key: 'stage3b', label: 'Stage 3b: Citizen Eval'    },
-  { key: 'stage3c', label: 'Stage 3c: ADEQ Eval'       },
+  { key: 'stage1',  label: 'Idea Assessment'        },
+  { key: 'stage2',  label: 'Implementation Roadmap' },
+  { key: 'stage3a', label: 'Neutral Evaluator'      },
+  { key: 'stage3b', label: 'Citizen Evaluator'      },
+  { key: 'stage3c', label: 'ADEQ Analyst'           },
   { key: 'stage5',  label: 'Stage 5: Synthesis'        },
   { key: 'stage4',  label: 'Stage 4: Summary'         },
 ];
@@ -298,7 +298,7 @@ function ResultsView({ idea, mode, weights, isLoading, currentStage, pipelineRes
 
             {activeTab === 'stage1' && (
               <AgentOutput
-                title="Stage 1 — Idea Assessment"
+                title="Idea Assessment"
                 status={stageStatus('stage1')}
                 output={r?.stage1?.raw_output ?? null}
               />
@@ -306,7 +306,7 @@ function ResultsView({ idea, mode, weights, isLoading, currentStage, pipelineRes
 
             {activeTab === 'stage2' && (
               <AgentOutput
-                title="Stage 2 — Implementation Roadmap"
+                title="Implementation Roadmap"
                 status={stageStatus('stage2')}
                 output={r?.stage2?.raw_output ?? null}
               />
@@ -325,7 +325,7 @@ function ResultsView({ idea, mode, weights, isLoading, currentStage, pipelineRes
               <AgentOutput
                 title="Stage 5 — Synthesis"
                 status={stageStatus('stage5')}
-                output={r?.stage5?.raw_output ?? null}
+                output={r?.stage5?.raw_output?.replace(/SYNTHESIS REPORT/gi, 'EVALUATION SYNTHESIS REPORT') ?? null}
               />
             )}
 
